@@ -10,7 +10,8 @@
 library(shiny)
 library(ggplot2)
 
-Ricedata <- read.csv("~/Assignments/Assignment_4_Sriram.Aditya/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na=c("NA","00"))
+Ricedata <- read.csv("/home/ubuntu/Assignments/Assignment_4_Cheng.Chris/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na=c("NA","00"))
+
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -24,29 +25,29 @@ ui <- fluidPage(
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
-         selectInput("trait1",
+         selectizeInput("trait1",
                      "Select your x-axis trait to display:",
-                     c("Amylose.content",
+                     c("Choose a trait" = "", "Amylose.content",
                      "Protein.content",
                      "Region",
                      "Seed.length",
-                     "Alu.Tol")
+                     "Alu.Tol", "Plant.height", "Flag.leaf.length", "Flag.leaf.width", "Seed.width", "Seed.volume") 
       ),
-         selectInput("trait2",
+         selectizeInput("trait2",
                    "Select your y-axis trait to display:",
-                     c("Amylose.content",
+                     c("Choose a trait" = "", "Amylose.content",
                      "Protein.content",
                      "Region",
                      "Seed.length",
-                     "Alu.Tol")
+                     "Alu.Tol", "Plant.height", "Flag.leaf.length", "Flag.leaf.width", "Seed.width", "Seed.volume") 
       ),
-         selectInput("trait3",
+         radioButtons("trait3",
                    "Select fill trait to compare by:",
-                     c("Amylose.content",
+                     c("Choose a trait" = "", "Amylose.content",
                       "Protein.content",
                       "Region",
                       "Seed.length",
-                      "Alu.Tol")
+                      "Alu.Tol", "Plant.height", "Flag.leaf.length", "Flag.leaf.width", "Seed.width", "Seed.volume") 
    )),
       
       # Show a plot of the generated distribution
@@ -65,7 +66,7 @@ server <- function(input, output) {
                                  color=input$trait3)) 
       
       # draw the histogram with the specified number of bins
-      p1 + geom_point()
+      p1 + geom_point(size=I(4))
    })
 }
 
