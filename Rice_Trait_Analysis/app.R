@@ -41,9 +41,9 @@ ui <- fluidPage(
                      "Seed.length",
                      "Alu.Tol", "Plant.height", "Flag.leaf.length", "Flag.leaf.width", "Seed.width", "Seed.volume") 
       ),
-         radioButtons("trait3",
+         checkboxGroupInput("trait3",
                    "Select fill trait to compare by:",
-                     c("Choose a trait" = "", "Amylose.content",
+                     c("Amylose.content",
                       "Protein.content",
                       "Region",
                       "Seed.length",
@@ -56,8 +56,9 @@ ui <- fluidPage(
       )))
 
 # Define server logic required to draw a histogram
+
 server <- function(input, output) {
-   
+
    output$scatterPlot <- renderPlot({
       # set up scatter plot
       p1    <- ggplot(data=Ricedata,
@@ -68,8 +69,7 @@ server <- function(input, output) {
       # draw the histogram with the specified number of bins
       p1 + geom_point(size=I(4))
    })
-}
-
+   }
 # Run the application 
 shinyApp(ui = ui, server = server)
 
