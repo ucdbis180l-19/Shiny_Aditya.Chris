@@ -10,7 +10,7 @@
 library(shiny)
 library(ggplot2)
 
-Ricedata <- read.csv("/home/ubuntu/Assignments/Assignment_4_Cheng.Chris/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na=c("NA","00"))
+Ricedata <- read.csv("RiceDiversity.44K.MSU6.Phenotypes.csv", na=c("NA","00"))
 
 
 # Define UI for application that draws a histogram
@@ -41,7 +41,7 @@ ui <- fluidPage(
                      "Seed.length",
                      "Alu.Tol", "Plant.height", "Flag.leaf.length", "Flag.leaf.width", "Seed.width", "Seed.volume") 
       ),
-         checkboxGroupInput("trait3",
+         radioButtons("trait3",
                    "Select fill trait to compare by:",
                      c("Amylose.content",
                       "Protein.content",
